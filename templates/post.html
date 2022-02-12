@@ -1,0 +1,11 @@
+{% extends "app.html" %} {% block title %} Post Page {% endblock title %} 
+{% block main %}
+{% load static %}
+
+<div class="card" style="width: 18rem;">
+    {% for p in post %}
+    	<img src="/media/{{ p.image }}">
+    	<p>{{p.title}}</p>
+    {% endfor %}
+</div>
+{% endblock %}
