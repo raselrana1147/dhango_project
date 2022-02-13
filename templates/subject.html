@@ -1,0 +1,17 @@
+{% extends "app.html" %} {% block title %} Subject Page {% endblock title %} 
+{% block main %}
+{% load static %}
+
+<div class="card" style="width: 18rem;">
+
+    	<p>{{subject.name}}</p>
+
+        {% for p in subject.subject_set.all  %}
+            Title:<h5>{{p.title}}<h5>
+            username: <h5>{{p.user.username}}<h5>
+            Subname: <h5>{{p.subject.name}}<h5>
+            <hr/>
+        {% endfor %}
+    
+</div>
+{% endblock %}
