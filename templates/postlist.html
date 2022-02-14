@@ -1,0 +1,11 @@
+{% extends "app.html" %} {% block title %} Post List {% endblock title %} 
+{% block main %}
+{% load static %}
+
+<div class="card" style="width: 18rem;">
+    {% for p in posts %}
+    	
+    	<a href="/tution/postdetail/{{p.id}}">{{p.title}}</a>
+    {% endfor %}
+</div>
+{% endblock %}

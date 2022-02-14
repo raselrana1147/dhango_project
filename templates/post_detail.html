@@ -1,0 +1,17 @@
+{% extends "app.html" %} {% block title %} Post Detail {% endblock title %} 
+{% block main %}
+{% load static %}
+<div class="card" style="width: 30rem;">
+    
+        <a href="/tution/edit/{{object.id}}">Edit</a>
+        <a href="/tution/delete/{{object.id}}">delete</a>
+   
+  
+  <p>Title: {{object.title}}</p>
+   subject: 
+   {% for s in  object.subject.all %}
+    <p>{{s.name}}<p>
+   {% endfor %}
+   <p>Category={{object.category}}</p>
+</div>
+{% endblock %}

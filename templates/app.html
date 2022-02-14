@@ -28,18 +28,22 @@
                             <a class="nav-link active" aria-current="page" href="{% url 'homeview' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'tution:contact' %}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'view_post' %}">Post</a>
+                            <a class="nav-link" href="{% url 'tution:view_post' %}">Post</a>
                         </li>
                       
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'postcreate' %}">Create Post</a>
+                            <a class="nav-link" href="{% url 'tution:postcreate' %}">Create Post</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'subview' %}">Subject</a>
+                            <a class="nav-link" href="{% url 'tution:postlist' %}">Post List</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tution:subview' %}">Subject</a>
                         </li>
                     </ul>
                     <form class="d-flex">
