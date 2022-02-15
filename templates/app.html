@@ -45,6 +45,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'tution:subview' %}">Subject</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tution:subview' %}">{% now 'h:i A' %}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tution:subview' %}">{% now 'D js F Y' %}</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -11,6 +11,7 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
+from django.contrib import messages
 
 from django.shortcuts import render,HttpResponse
 from .models import Contact
@@ -30,6 +31,7 @@ def contact(request):
     if request.method=="POST":
         form=ContactForm(request.POST,initial=initials)
         if form.is_valid():
+            messages.success(request,"Form successfully submitted")
             form.save()
     else:
         form=ContactForm(initial=initials)
@@ -38,6 +40,7 @@ def contact(request):
 class ContactView(View):
     class_form=ContactForm
     class_view='contact.html'
+    
     # success_url='/'
     # def form_valid(self,form):
     #     form.save()

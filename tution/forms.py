@@ -26,7 +26,7 @@ class ContactForm(forms.ModelForm):
         if len(num_of_w) > 10:
             self.add_error('name',"Your name should be less than 3 character")
         else:
-            value
+            return value
         
 class PostForm(forms.ModelForm):
     class Meta:
