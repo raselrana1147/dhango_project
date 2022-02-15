@@ -17,6 +17,7 @@ from django.shortcuts import render,HttpResponse
 from .models import Contact
 from .forms import ContactForm,PostForm
 from .models import Post,Subject,Class_in
+from django.db.models import Q
 
 
 class PostDetailView(DetailView):
@@ -139,4 +140,15 @@ def subview(request):
     }
     
     return render(request,'subject.html',context)
+def searchitem(request):
+    query=request.POST.get('search','')
+    if query:
+        queryset=(Q(title__incontains= query)) | (Q(category__incontains= query)) | (Q(medium__incontains= query)) | (Q(class_in__name__incontains= query)) | (Q(detail__incontains= query))
+        results=Post.objects.filter(queryset).distinct()
+    else:
+        results=[]
+    context={
+        'results':results
+    }
+    return render(request,'search.html',context)
     

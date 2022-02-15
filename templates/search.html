@@ -1,0 +1,13 @@
+{% extends "app.html" %} {% block title %} Search List {% endblock title %} 
+{% block main %}
+{% load static %}
+{% load humanize %}
+
+<div class="card" style="width: 18rem;">
+    {% for p in results %}
+    	
+    	<a href="/tution/postdetail/{{p.id}}">{{p.title}}</a>
+        by {{p.user.username}} at {{p.created_at| naturaltime }}
+    {% endfor %}
+</div>
+{% endblock %}
