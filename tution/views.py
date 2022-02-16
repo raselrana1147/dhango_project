@@ -143,7 +143,11 @@ def subview(request):
 def searchitem(request):
     query=request.POST.get('search','')
     if query:
-        queryset=(Q(title__incontains= query)) | (Q(category__incontains= query)) | (Q(medium__incontains= query)) | (Q(class_in__name__incontains= query)) | (Q(detail__incontains= query))
+        queryset=(Q(title__incontains= query)) | (Q
+                (category__incontains= query)) | (Q
+                (medium__incontains= query)) | (Q
+                (class_in__name__incontains= query)) | (Q
+                (detail__incontains= query))
         results=Post.objects.filter(queryset).distinct()
     else:
         results=[]
