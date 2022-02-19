@@ -5,11 +5,15 @@ from django.contrib.auth import authenticate,login,logout, update_session_auth_h
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
+from .models import UserProfile
+from .forms import UserProfileForm
 
 
 
@@ -54,19 +58,46 @@ def registration(request):
             # email=EmailMessage(mail_subject,message,to=[send_mail])
             # email.send()
 
-            send_mail(
-                'Subject here',
-                'Here is the message.',
-                'developer1000486@gmail.com',
-                ['raselrana1147@gmail.com'],
-                fail_silently=False,
-            )
+            # send_mail(
+            #     'Subject here',
+            #     'Here is the message.',
+            #     'developer1000486@gmail.com',
+            #     ['raselrana1147@gmail.com'],
+            #     fail_silently=False,
+            # )
 
             messages.success(request,"Registration has been successfull")
             return redirect("session:usersession")
     else:
         form=SignUpForm
     return render(request,"registration.html",{"form":form})
+def UserProfileMake(request):
+    try:
+        instance=UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        instance=None
+        
+    if request.method=="POST":
+        if instance:
+            form=UserProfileForm(request.POST,request.FILES,instance=instance)
+        else:
+            form=UserProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            obj=form.save(commit=False)
+            obj.user=request.user
+            obj.save()
+            messages.success(request,"Profile added successfully")
+            return redirect('homeview')
+    else:
+        form=UserProfileForm(instance=instance)
+        context={
+            'form':form
+        }
+        return render(request,'userprofile.html',context)
+
+
+
+
 
 def changepassword(request):
     if request.method=="POST":
