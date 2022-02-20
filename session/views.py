@@ -71,6 +71,8 @@ def registration(request):
     else:
         form=SignUpForm
     return render(request,"registration.html",{"form":form})
+
+
 def UserProfileMake(request):
     try:
         instance=UserProfile.objects.get(user=request.user)
@@ -90,10 +92,8 @@ def UserProfileMake(request):
             return redirect('homeview')
     else:
         form=UserProfileForm(instance=instance)
-        context={
-            'form':form
-        }
-        return render(request,'userprofile.html',context)
+        
+    return render(request,'userprofile.html',{'form':form})
 
 
 

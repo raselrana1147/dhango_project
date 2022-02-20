@@ -36,9 +36,9 @@ class UserProfile(models.Model):
     religion=models.CharField(max_length=50)
     biodata=models.TextField()
     profession=models.CharField(max_length=100)
-    image=models.ImageField(default='default.jpg',upload_to='session/images')
+    image=models.ImageField(default='default.jpg',upload_to='media/profile/image')
     def __str__(self):
-        f'{self.user.username} Profile'
+        return f'{self.user.username} Profile'
     def save(self):
         super().save()
         img=Image.open(self.image.path)

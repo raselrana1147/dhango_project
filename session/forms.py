@@ -10,9 +10,7 @@ class SignUpForm(UserCreationForm):
 		model=User
 		fields=('username','email','first_name','last_name')
 class UserProfileForm(forms.ModelForm):
-	birth_date=forms.DateField(widget=forms.TextInput(
-			attrs={'type:':'date'}
-		))
+	birth_date=forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
 	class Meta:
 		model=UserProfile
 		exclude=('user',)
